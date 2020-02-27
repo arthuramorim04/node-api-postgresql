@@ -57,4 +57,23 @@ const getUserByNameAndEmail = (request,response) =>{
 }
 
 
-module.exports = {getUsers,getUserByID,getUserByName,getUserByNameAndEmail}
+//----------------------------- Cadastro Usuario -------------------
+
+const cadastroUsuario = (request,response) =>{
+    //define parametro que vai ser passado pra clausula where
+    
+    const {usuario, senha, email} = request.body
+    
+    //padrao de querry que recebe argumentos da busca
+    pool.query('insert into usuario.cadastro (usuario,senha,email) values ($1,$2,$3)',[usuario,senha,email],(error,result)=>{
+        if(error){
+            console.log('erro ao selecionar lista de usuarios. Classe queries.js')
+            throw error
+        }
+        response.status(200).json(result.rows)
+        console.log("usuario cadastrado!")
+})
+}
+
+
+module.exports = {getUsers,getUserByID,getUserByName,getUserByNameAndEmail,cadastroUsuario}

@@ -19,6 +19,10 @@ app.get('/user-id',db.getUserByID)
 app.get('/user-name', db.getUserByName)
 app.get('/user-name-email', db.getUserByNameAndEmail)
 
+// -- Cadastros --
+
+app.post('/cadastra-usuario', db.cadastroUsuario)
+
 
 
 app.listen(port)
