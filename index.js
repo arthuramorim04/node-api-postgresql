@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./src/queries')
+const prod = require('./src/cadastroProduto')
 
 // Constantes da classe
 const app = express()
@@ -22,6 +23,7 @@ app.get('/user-name-email', db.getUserByNameAndEmail)
 // -- Cadastros --
 
 app.post('/cadastra-usuario', db.cadastroUsuario)
+app.post('/cadastra-produto', prod.cadastraProdutoVendedor)
 
 
 

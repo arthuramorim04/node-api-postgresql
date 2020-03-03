@@ -75,5 +75,20 @@ const cadastroUsuario = (request,response) =>{
 })
 }
 
+const cadastraProduto = (request,response) =>{
+    //define parametro que vai ser passado pra clausula where
+    
+    const {id_usuario,nome_produto,valor_produto ,quant_disponivel ,desc_produto ,caracteristicas_produto} = request.body
+    
+    //padrao de querry que recebe argumentos da busca
+    pool.query('insert into produto.vendedores (id_usuario,nome_produto,valor_produto ,quant_disponivel ,desc_produto ,caracteristicas_produto ) values ($1,$2,$3,$4,$5,$6)',[id_usuario,nome_produto,valor_produto ,quant_disponivel ,desc_produto ,caracteristicas_produto],(error,result)=>{
+        if(error){
+            console.log('erro ao inserir produtos Classe queries.js')
+            throw error
+        }
+        response.status(200).json(result.rows)
+        console.log("usuario cadastrado!")
+})
+}
 
 module.exports = {getUsers,getUserByID,getUserByName,getUserByNameAndEmail,cadastroUsuario}
